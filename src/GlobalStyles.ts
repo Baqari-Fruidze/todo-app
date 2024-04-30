@@ -8,6 +8,4 @@ html{
     margin: 0;
     box-sizing: border-box;
 }
-body{
-    background: black;
-}`;
+`;
