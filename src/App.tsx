@@ -18,11 +18,10 @@ function App() {
 }
 const Parent = styled.div<{ theme: boolean }>`
   height: 100vh;
-  background-image: url(${(props) =>
-    props.theme ? mobileLight : mobileDark}) !important;
-  background-repeat: no-repeat !important;
-  background-size: 100% !important;
-  background: ${(props) => (props.theme ? "#FAFAFA" : " #171823;")};
+  background-image: url(${(props) => (props.theme ? mobileLight : mobileDark)});
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* background-color: ${(props) => (props.theme ? "#FAFAFA" : " #171823")}; */
   padding: 4.8rem 2.4rem 7.2rem;
 `;
 
