@@ -27,4 +27,5 @@ export default function Header({
 const Head = styled.header`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4rem;
 `;

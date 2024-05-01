@@ -6,13 +6,15 @@ import todo from "/images/TODO 2.svg";
 import mobileLight from "/images/bg-mobile-light.jpg";
 import mobileDark from "/images/bg-mobile-dark.jpg";
 import styled from "styled-components";
-import Header from "./Header";
+import Header from "./components/Header";
 import { useState } from "react";
+import Input from "./components/Input";
 function App() {
   const [theme, setTheme] = useState<boolean>(true);
   return (
     <Parent theme={theme}>
       <Header theme={theme} setTheme={setTheme} />
+      <Input />
     </Parent>
   );
 }
