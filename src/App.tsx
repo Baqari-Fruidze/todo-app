@@ -15,9 +15,21 @@ function App() {
     <Parent theme={theme}>
       <Header theme={theme} setTheme={setTheme} />
       <Input />
+      <Para></Para>
     </Parent>
   );
 }
+const Para = styled.p`
+  color: #9495a5;
+  text-align: center;
+  font-family: "Josefin Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.194px;
+  margin-top
+`;
 const Parent = styled.div<{ theme: boolean }>`
   height: 100vh;
   background-image: url(${(props) =>
