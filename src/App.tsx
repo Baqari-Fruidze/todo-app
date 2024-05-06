@@ -15,7 +15,7 @@ function App() {
     <Parent theme={theme}>
       <Header theme={theme} setTheme={setTheme} />
       <Input />
-      <Para></Para>
+      <Para>Drag and drop to reorder list</Para>
     </Parent>
   );
 }
@@ -28,7 +28,7 @@ const Para = styled.p`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.194px;
-  margin-top
+  margin-top: 4rem;
 `;
 const Parent = styled.div<{ theme: boolean }>`
   height: 100vh;

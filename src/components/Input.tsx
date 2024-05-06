@@ -26,8 +26,7 @@ export default function Input() {
         <InputDiv>
           <TextInput
             onChange={InputValue}
-            // onKeyDown={(event) => event.key === "Enter" && foo()}.
-            // onKeyDown={foo}
+            onKeyDown={(event) => event.key === "Enter" && foo()}
             type="text"
             placeholder="Create a new todo…"
             value={todo}

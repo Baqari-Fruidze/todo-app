@@ -12,7 +12,6 @@ export default function Header({
   setTheme: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const ThemeChanger = () => setTheme(!theme);
-  console.log(theme);
   return (
     <Head>
       <img src={todo} alt="" />
