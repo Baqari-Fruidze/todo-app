@@ -18,8 +18,16 @@ export default function Input() {
   const InputValue = (event: ChangeEvent<HTMLInputElement>) => {
     setTodo(event.target.value);
   };
-  const foo = () =>
+  const foo = () => {
     setTodos([{ id: uuidv4(), todo, completed: false }, ...todos]);
+    setTodo("");
+  };
+  const TodoStatusChecker = () => {
+    todos.map((item) => {
+      !item.completed;
+    }, ...todos);
+    console.log(todos[0].completed);
+  };
   return (
     <>
       <Main>
@@ -39,7 +47,7 @@ export default function Input() {
           {todos.map((item) => (
             <TodosLists>
               <div className="mini">
-                <CircleTwo></CircleTwo>
+                <CircleTwo onClick={TodoStatusChecker}></CircleTwo>
                 <Parag>{item.todo}</Parag>
               </div>
               <img src={cross} alt="" />
@@ -112,7 +120,7 @@ const TodosLists = styled.div`
   border-bottom: 1px solid #e3e4f1;
   & .mini {
     display: flex;
-    justify-content: ;
+    justify-content: space-between;
     align-items: center;
     gap: 1.2rem;
   }
@@ -157,6 +165,7 @@ const Notifications = styled.div`
     letter-spacing: -0.194px;
   }
 `;
+
 const CircleTwo = styled.div`
   width: 2rem;
   height: 2rem;
