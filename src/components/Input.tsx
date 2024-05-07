@@ -19,15 +19,12 @@ export default function Input() {
     setTodo(event.target.value);
   };
   const foo = () => {
-    setTodos([{ id: uuidv4(), todo, completed: false }, ...todos]);
+    setTodos([{ id: uuidv4(), todo, completed: done }, ...todos]);
     setTodo("");
   };
-  const TodoStatusChecker = () => {
-    todos.map((item) => {
-      !item.completed;
-    }, ...todos);
-    console.log(todos[0].completed);
-  };
+  // const TodoStatusChecker = () => {
+  //   setTodos(todos.map((item)=> {item.id,item.todo,item.completed}));
+  // };
   return (
     <>
       <Main>
@@ -47,7 +44,7 @@ export default function Input() {
           {todos.map((item) => (
             <TodosLists>
               <div className="mini">
-                <CircleTwo onClick={TodoStatusChecker}></CircleTwo>
+                <CircleTwo></CircleTwo>
                 <Parag>{item.todo}</Parag>
               </div>
               <img src={cross} alt="" />
