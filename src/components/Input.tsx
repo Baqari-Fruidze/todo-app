@@ -13,8 +13,16 @@ type TTodoArr = {
 export default function Input() {
   const [todos, setTodos] = useState<TTodoArr>([]);
   const [todo, setTodo] = useState<string>("");
-  const [done, setDone] = useState<boolean>(false);
+  const [done, setDone] = useState<boolean>(true);
   const statusChecker = () => setDone(!done);
+  const deleteTodo = (id: string) => {
+    let filtered = todos.filter((item) => item.id !== id);
+    setTodos(filtered);
+  };
+  const count = todos.reduce(
+    (acc, el) => (!el.completed ? (acc = acc + 1) : acc),
+    0
+  );
   const InputValue = (event: ChangeEvent<HTMLInputElement>) => {
     setTodo(event.target.value);
   };
@@ -22,9 +30,16 @@ export default function Input() {
     setTodos([{ id: uuidv4(), todo, completed: done }, ...todos]);
     setTodo("");
   };
-  // const TodoStatusChecker = () => {
-  //   setTodos(todos.map((item)=> {item.id,item.todo,item.completed}));
-  // };
+  function arrStatusChecker(id: string) {
+    let mapped = todos.map((item) => {
+      if (id === item.id) {
+        return { ...item, completed: !item.completed };
+      }
+      return item;
+    });
+    setTodos(mapped);
+    console.log(mapped);
+  }
   return (
     <>
       <Main>
@@ -37,21 +52,26 @@ export default function Input() {
             value={todo}
           />
           <Circle onClick={statusChecker} done={done}>
-            {!done ? <img src={check} alt="" /> : null}
+            {done ? <img src={check} alt="" /> : null}
           </Circle>
         </InputDiv>
         <TodoDiv>
           {todos.map((item) => (
             <TodosLists>
               <div className="mini">
-                <CircleTwo></CircleTwo>
+                <CircleTwo
+                  onClick={() => arrStatusChecker(item.id)}
+                  completed={item.completed}
+                >
+                  {item.completed ? <img src={check} alt="" /> : null}
+                </CircleTwo>
                 <Parag>{item.todo}</Parag>
               </div>
-              <img src={cross} alt="" />
+              <img src={cross} alt="" onClick={() => deleteTodo(item.id)} />
             </TodosLists>
           ))}
           <InfoDiv>
-            <span>5 items left</span>
+            <span>{count} items left</span>
             <span>Clear Completed</span>
           </InfoDiv>
         </TodoDiv>
@@ -96,7 +116,7 @@ const Circle = styled.div<{ done: boolean }>`
   top: 12.7rem;
   left: 4.3rem;
   background: ${(props) =>
-    props.done ? "#fff" : "linear-gradient(135deg, #5DF 0%, #C058F3 100%)"};
+    props.done ? "linear-gradient(135deg, #5DF 0%, #C058F3 100%)" : "#fff"};
 `;
 const Main = styled.div`
   display: flex;
@@ -163,7 +183,14 @@ const Notifications = styled.div`
   }
 `;
 
-const CircleTwo = styled.div`
+const CircleTwo = styled.div<{ completed: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${(props) =>
+    props.completed
+      ? "linear-gradient(135deg, #5DF 0%, #C058F3 100%)"
+      : "#fff"};
   width: 2rem;
   height: 2rem;
   border: 1px solid #e3e4f1;
