@@ -19,6 +19,11 @@ function App() {
     </Parent>
   );
 }
+// const Main = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   min-height: 100vh;
+// `;
 const Para = styled.p`
   color: #9495a5;
   text-align: center;
@@ -31,7 +36,12 @@ const Para = styled.p`
   margin-top: 4rem;
 `;
 const Parent = styled.div<{ theme: boolean }>`
-  height: 100vh;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  /* margin: 0 auto;
+  max-width: 45rem; */
+  min-height: 100vh;
   background-image: url(${(props) =>
     props.theme === true ? mobileLight : mobileDark});
   background-repeat: no-repeat;

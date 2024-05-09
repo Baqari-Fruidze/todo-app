@@ -14,6 +14,15 @@ export default function Input() {
   const [todos, setTodos] = useState<TTodoArr>([]);
   const [todo, setTodo] = useState<string>("");
   const [done, setDone] = useState<boolean>(true);
+  const [selector, setSelector] = useState<string>("all");
+  // function activeShower() {
+  //   let mapped = todos.map((item) => {...item,completed: !item.completed});
+  //   setTodos(mapped);
+  // }
+  function completedShower() {
+    let filtered = todos.filter((item) => item.completed);
+    setTodos(filtered);
+  }
   const statusChecker = () => setDone(!done);
   const deleteTodo = (id: string) => {
     let filtered = todos.filter((item) => item.id !== id);
@@ -38,7 +47,6 @@ export default function Input() {
       return item;
     });
     setTodos(mapped);
-    console.log(mapped);
   }
   return (
     <>
@@ -56,29 +64,37 @@ export default function Input() {
           </Circle>
         </InputDiv>
         <TodoDiv>
-          {todos.map((item) => (
-            <TodosLists>
-              <div className="mini">
-                <CircleTwo
-                  onClick={() => arrStatusChecker(item.id)}
-                  completed={item.completed}
-                >
-                  {item.completed ? <img src={check} alt="" /> : null}
-                </CircleTwo>
-                <Parag>{item.todo}</Parag>
-              </div>
-              <img src={cross} alt="" onClick={() => deleteTodo(item.id)} />
-            </TodosLists>
-          ))}
+          {todos
+            .filter((item) => {
+              if (selector === "all") return true;
+              if (selector === "active") return !item.completed;
+              if (selector === "completed") return item.completed;
+            })
+            .map((item) => (
+              <TodosLists>
+                <div className="mini">
+                  <CircleTwo
+                    onClick={() => arrStatusChecker(item.id)}
+                    completed={item.completed}
+                  >
+                    {item.completed ? <img src={check} alt="" /> : null}
+                  </CircleTwo>
+                  <Parag>{item.todo}</Parag>
+                </div>
+                <img src={cross} alt="" onClick={() => deleteTodo(item.id)} />
+              </TodosLists>
+            ))}
           <InfoDiv>
             <span>{count} items left</span>
             <span>Clear Completed</span>
           </InfoDiv>
         </TodoDiv>
         <Notifications>
-          <span className="all">All</span>
-          <span>Active</span>
-          <span>Completed</span>
+          <span className="all" onClick={() => setSelector("all")}>
+            All
+          </span>
+          <span onClick={() => setSelector("active")}>Active</span>
+          <span onClick={() => setSelector("completed")}>Completed</span>
         </Notifications>
       </Main>
     </>
@@ -135,6 +151,9 @@ const TodosLists = styled.div`
   justify-content: space-between;
   padding: 1.5rem 2rem 1.5rem 2rem;
   border-bottom: 1px solid #e3e4f1;
+  &:hover {
+    cursor: pointer;
+  }
   & .mini {
     display: flex;
     justify-content: space-between;
@@ -195,4 +214,10 @@ const CircleTwo = styled.div<{ completed: boolean }>`
   height: 2rem;
   border: 1px solid #e3e4f1;
   border-radius: 50%;
+  &:hover {
+    fill: #fff;
+    stroke-width: 1px;
+    stroke: #000;
+    filter: drop-shadow(0px 1px 2px #000);
+  }
 `;
