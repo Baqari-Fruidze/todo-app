@@ -19,10 +19,6 @@ export default function Input() {
     let filtered = todos.filter((item) => !item.completed);
     setTodos(filtered);
   }
-  function completedShower() {
-    let filtered = todos.filter((item) => item.completed);
-    setTodos(filtered);
-  }
   const statusChecker = () => setDone(!done);
   const deleteTodo = (id: string) => {
     let filtered = todos.filter((item) => item.id !== id);

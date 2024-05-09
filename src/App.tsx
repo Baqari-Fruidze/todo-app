@@ -40,7 +40,7 @@ const Parent = styled.div<{ theme: boolean }>`
   flex-direction: column;
   align-items: center; */
   margin: 0 auto;
-  max-width: 45rem;
+  max-width: 40rem;
   min-height: 100vh;
   background-image: url(${(props) =>
     props.theme === true ? mobileLight : mobileDark});
@@ -49,6 +49,9 @@ const Parent = styled.div<{ theme: boolean }>`
   background-color: ${(props) =>
     props.theme === true ? "#FAFAFA" : " #171823"};
   padding: 4.8rem 2.4rem 7.2rem;
+  @media (min-width: 90rem) {
+    max-width: 54rem;
+  }
 `;
 
 export default App;
