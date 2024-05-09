@@ -15,10 +15,10 @@ export default function Input() {
   const [todo, setTodo] = useState<string>("");
   const [done, setDone] = useState<boolean>(true);
   const [selector, setSelector] = useState<string>("all");
-  // function activeShower() {
-  //   let mapped = todos.map((item) => {...item,completed: !item.completed});
-  //   setTodos(mapped);
-  // }
+  function CompletedDeleter() {
+    let filtered = todos.filter((item) => !item.completed);
+    setTodos(filtered);
+  }
   function completedShower() {
     let filtered = todos.filter((item) => item.completed);
     setTodos(filtered);
@@ -86,7 +86,7 @@ export default function Input() {
             ))}
           <InfoDiv>
             <span>{count} items left</span>
-            <span>Clear Completed</span>
+            <span onClick={CompletedDeleter}>Clear Completed</span>
           </InfoDiv>
         </TodoDiv>
         <Notifications>
@@ -117,10 +117,10 @@ const TextInput = styled.input`
   background: #fff;
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
   border: none;
-  position: relative;
 `;
 
 const Circle = styled.div<{ done: boolean }>`
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,8 +129,8 @@ const Circle = styled.div<{ done: boolean }>`
   border: 1px solid #e3e4f1;
   position: absolute;
   border-radius: 50%;
-  top: 12.7rem;
-  left: 4.3rem;
+  top: 50%;
+  left: 5%;
   background: ${(props) =>
     props.done ? "linear-gradient(135deg, #5DF 0%, #C058F3 100%)" : "#fff"};
 `;
@@ -139,7 +139,9 @@ const Main = styled.div`
   flex-direction: column;
   gap: 1.6rem;
 `;
-const InputDiv = styled.div``;
+const InputDiv = styled.div`
+  position: relative;
+`;
 const TodoDiv = styled.div`
   border-radius: 5px;
   background: #fff;

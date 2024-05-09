@@ -38,9 +38,9 @@ const Para = styled.p`
 const Parent = styled.div<{ theme: boolean }>`
   /* display: flex;
   flex-direction: column;
-  justify-content: center; */
-  /* margin: 0 auto;
-  max-width: 45rem; */
+  align-items: center; */
+  margin: 0 auto;
+  max-width: 45rem;
   min-height: 100vh;
   background-image: url(${(props) =>
     props.theme === true ? mobileLight : mobileDark});
