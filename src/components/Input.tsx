@@ -53,6 +53,7 @@ export default function Input({ theme }: { theme: boolean }) {
             type="text"
             placeholder="Create a new todo…"
             value={todo}
+            themee={theme}
           />
           <Circle onClick={statusChecker} done={done}>
             {done ? <img src={check} alt="" /> : null}
@@ -66,7 +67,7 @@ export default function Input({ theme }: { theme: boolean }) {
               if (selector === "completed") return item.completed;
             })
             .map((item) => (
-              <TodosLists>
+              <TodosLists themee={theme}>
                 <div className="mini">
                   <CircleTwo
                     onClick={() => arrStatusChecker(item.id)}
@@ -105,11 +106,12 @@ const Parag = styled.p`
   line-height: normal;
   letter-spacing: -0.25px;
 `;
-const TextInput = styled.input<{ theme: boolean }>`
+const TextInput = styled.input<{ themee: boolean }>`
+  color: ${(props) => (props.themee ? "#767992" : "#9495A5")};
   width: 100%;
   padding: 1.5rem 0 1.5rem 5.2rem;
   border-radius: 5px;
-  background: ${(props) => (props.theme ? "#fff" : "#25273D")};
+  background-color: ${(props) => (props.themee ? "#fff" : "#25273D")};
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
   border: none;
 `;
@@ -142,8 +144,8 @@ const TodoDiv = styled.div`
   background: #fff;
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
 `;
-const TodosLists = styled.div<{ theme: boolean }>`
-  background: ${(props) => (props.theme ? "#fff" : "#25273D")};
+const TodosLists = styled.div<{ themee: boolean }>`
+  background: ${(props) => (props.themee ? "#fff" : "#25273D")};
   display: flex;
   align-items: center;
   justify-content: space-between;
