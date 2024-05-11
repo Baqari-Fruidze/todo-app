@@ -14,7 +14,7 @@ function App() {
   return (
     <Parent theme={theme}>
       <Header theme={theme} setTheme={setTheme} />
-      <Input />
+      <Input theme={theme} setTheme={setTheme} />
       <Para>Drag and drop to reorder list</Para>
     </Parent>
   );

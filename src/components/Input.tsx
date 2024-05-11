@@ -9,8 +9,7 @@ type TTodoArr = {
   id: string;
   completed: boolean;
 }[];
-
-export default function Input() {
+export default function Input({ theme }: { theme: boolean }) {
   const [todos, setTodos] = useState<TTodoArr>([]);
   const [todo, setTodo] = useState<string>("");
   const [done, setDone] = useState<boolean>(true);
@@ -106,11 +105,11 @@ const Parag = styled.p`
   line-height: normal;
   letter-spacing: -0.25px;
 `;
-const TextInput = styled.input`
+const TextInput = styled.input<{ theme: boolean }>`
   width: 100%;
   padding: 1.5rem 0 1.5rem 5.2rem;
   border-radius: 5px;
-  background: #fff;
+  background: ${(props) => (props.theme ? "#fff" : "#25273D")};
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
   border: none;
 `;
@@ -143,7 +142,8 @@ const TodoDiv = styled.div`
   background: #fff;
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
 `;
-const TodosLists = styled.div`
+const TodosLists = styled.div<{ theme: boolean }>`
+  background: ${(props) => (props.theme ? "#fff" : "#25273D")};
   display: flex;
   align-items: center;
   justify-content: space-between;
